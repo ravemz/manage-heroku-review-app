@@ -18,18 +18,12 @@ async function run() {
 
   const ctx = github.context;
   const pr = ctx.payload.pull_request!;
-  const fork = pr.head.repo.fork;
   const branch = pr.head.ref;
   const version = pr.head.sha;
   const pr_number = pr.number;
   const action = core.getInput("action");
   const issue = ctx.issue;
   const pipeline = process.env.HEROKU_PIPELINE_ID;
-
-  if (fork) {
-    core.info("PRs from forked repos can't trigger this action");
-    return;
-  }
 
   core.debug("connecting to heroku");
   let heroku: Heroku | undefined;

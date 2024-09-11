@@ -50,9 +50,11 @@ async function run() {
 
       const app = reviewApps.find((app) => app.pr_number == pr_number);
       if (app) {
-        core.info("Destroying Review App");
-        await heroku!.delete(`/review-apps/${app.id}`);
+        core.info(`Destroying Review App '${app.id}' for pr: ${pr_number}`);
+        // await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
+      } else {
+        core.info(`App not found for pr: ${pr_number}`);
       }
     } catch (error) {
       core.error(JSON.stringify(error));

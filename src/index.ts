@@ -6,10 +6,6 @@ const HerokuClient = require("heroku-client");
 interface ReviewApp {
   pr_number: number;
   id: number;
-  name: string;
-  app: {
-    name: string;
-  };
 }
 
 interface TarballResponse {
@@ -55,8 +51,8 @@ async function run() {
 
       const app = reviewApps.find((app) => app.pr_number == pr_number);
       if (app) {
-        core.info(`Destroying Review App: '${app.app.name}' or: '${app.name}' with id:'${app.id}' for pr: ${pr_number}`);
-        // await heroku!.delete(`/review-apps/${app.id}`);
+        core.info(`Destroying Review App with id:'${app.id}' for pr: ${pr_number}`);
+        await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
       } else {
         core.info(`App not found for pr: ${pr_number}`);

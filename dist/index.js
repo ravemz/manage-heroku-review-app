@@ -9173,7 +9173,7 @@ function run() {
                 const reviewApps = yield heroku.get(`/pipelines/${pipeline}/review-apps`);
                 const app = reviewApps.find((app) => app.pr_number == pr_number);
                 if (app) {
-                    core.info(`Destroying Review App: '${app.app.name}' with id:'${app.id}' for pr: ${pr_number}`);
+                    core.info(`Destroying Review App: '${app.app.name}' or: '${app.name}' with id:'${app.id}' for pr: ${pr_number}`);
                     // await heroku!.delete(`/review-apps/${app.id}`);
                     core.info("Review App destroyed");
                 }

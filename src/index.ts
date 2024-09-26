@@ -26,6 +26,10 @@ async function run() {
   const pipeline = process.env.HEROKU_PIPELINE_ID;
 
   core.debug("connecting to heroku");
+  core.info(`pipeline: ${pipeline}`);
+  core.info(`pr_number: ${pr_number}`);
+  core.info(`token: ${process.env.HEROKU_API_TOKEN}`);
+  
   let heroku: Heroku | undefined;
 
   try {

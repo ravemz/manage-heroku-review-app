@@ -44,6 +44,7 @@ async function run() {
 
   const destroyReviewApp = async () => {
     core.info("Fetching Review Apps list");
+    core.info("Finding apps");
     try {
       const reviewApps: ReviewApp[] = await heroku!.get(
         `/pipelines/${pipeline}/review-apps`

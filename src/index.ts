@@ -26,9 +26,6 @@ async function run() {
   const pipeline = process.env.HEROKU_PIPELINE_ID;
 
   core.debug("connecting to heroku");
-  core.info(`pipeline: ${pipeline}`);
-  core.info(`pr_number: ${pr_number}`);
-  core.info(`token: ${process.env.HEROKU_API_TOKEN}`);
   
   let heroku: Heroku | undefined;
 
@@ -58,6 +55,7 @@ async function run() {
         // await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
       } else {
+        core.info("App not found");
         core.info(`App not found for pr: ${pr_number}`);
       }
     } catch (error) {

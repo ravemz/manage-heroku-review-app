@@ -44,7 +44,6 @@ async function run() {
 
   const destroyReviewApp = async () => {
     core.info("Fetching Review Apps list");
-    core.info("Finding apps");
     try {
       const reviewApps: ReviewApp[] = await heroku!.get(
         `/pipelines/${pipeline}/review-apps`
@@ -56,7 +55,6 @@ async function run() {
         // await heroku!.delete(`/review-apps/${app.id}`);
         core.info("Review App destroyed");
       } else {
-        core.info("App not found");
         core.info(`App not found for pr: ${pr_number}`);
       }
     } catch (error) {
